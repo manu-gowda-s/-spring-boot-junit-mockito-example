@@ -206,7 +206,7 @@ public class StudentControllerTest
     }
 
     @Test
-    @DisplayName(value = "")
+    @DisplayName(value = "This test will return groupByBranch with list of students by same branch")
     public void test_getStudentsByBranch_success() throws Exception
     {
         Map<String, List<Student>> listMap = new HashMap<>();
