@@ -56,7 +56,7 @@ public class StudentRepositoryTest
         Student savedStudent = studentRepository.save(student);
         Student optionalStudent = studentRepository.findById(savedStudent.getId()).get();
 
-        //then
+        //THEN
         Assertions.assertNotNull(optionalStudent);
         Assertions.assertEquals(optionalStudent.getEmail(),"kmal@gmail.com");
         Assertions.assertEquals(optionalStudent.getCity(),"Bengaluru");
@@ -78,7 +78,8 @@ public class StudentRepositoryTest
 
         //WHEN
         List<Student> students = studentRepository.findAll();
-
+        
+        //THEN
         Assertions.assertNotNull(students);
         Assertions.assertEquals(students.size(),2);
         Assertions.assertEquals(students.get(0).getCity(),"Bengaluru");
@@ -91,15 +92,16 @@ public class StudentRepositoryTest
     @DisplayName(value = "this test will take student email and return student")
     public void givenEmail_whenEmail_thenReturnStudent()
     {
-        //WHEN
+        //GIVEN
         String email = "newMail@gmail.com";
         Student student1 = Student.builder().id(107L).firstName("Sanvi").lastName("Gowda")
                 .email(email).city("Bengaluru").branch("EEE").build();
-
         Student student = studentRepository.save(student1);
-
+        
+        //WHEN
         Optional<Student> student2 = studentRepository.findByEmail(student.getEmail());
-
+        
+        //THEN
         Assertions.assertNotNull(student2);
         Assertions.assertTrue(student2.isPresent());
         Assertions.assertEquals(student2.get().getEmail(),"newMail@gmail.com");
@@ -107,7 +109,7 @@ public class StudentRepositoryTest
     }
 
     @Test
-    @DisplayName(value = "")
+    @DisplayName(value = "This test will take city as the parameter and return list of students from that city")
     public void givenCity_whenCity_thenReturnListOfStudent()
     {
         //GIVEN
